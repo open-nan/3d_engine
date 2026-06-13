@@ -1,4 +1,4 @@
-import { mkdtemp, rm, cp } from "node:fs/promises";
+import { mkdtemp, rm, cp, writeFile, readdir } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -13,6 +13,8 @@ try {
   await run("git", ["init"], worktree);
   await run("git", ["checkout", "-b", "gh-pages"], worktree);
   await cp(dist, worktree, { recursive: true });
+  await removeDsStore(worktree);
+  await writeFile(join(worktree, ".nojekyll"), "");
   await run("git", ["add", "-A"], worktree);
   await run("git", ["commit", "-m", commitMessage], worktree);
   await run("git", ["remote", "add", "origin", "git@github.com:open-nan/3d_engine.git"], worktree);
@@ -20,6 +22,17 @@ try {
   console.log("GitHub Pages deployed to gh-pages.");
 } finally {
   await rm(worktree, { recursive: true, force: true });
+}
+
+async function removeDsStore(dir) {
+  for (const entry of await readdir(dir, { withFileTypes: true })) {
+    const path = join(dir, entry.name);
+    if (entry.name === ".DS_Store") {
+      await rm(path, { force: true });
+    } else if (entry.isDirectory()) {
+      await removeDsStore(path);
+    }
+  }
 }
 
 function run(command, args, cwd) {
