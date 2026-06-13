@@ -1,0 +1,18 @@
+{
+  "name": "new-game",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:bundle": "node scripts/build-scene-bundle.mjs",
+    "build:wasm": "node scripts/build-wasm.mjs --release",
+    "build:wasm:dev": "node scripts/build-wasm.mjs",
+    "dev": "vite",
+    "start": "vite --host 127.0.0.1",
+    "build": "npm run build:bundle && npm run build:wasm && vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}

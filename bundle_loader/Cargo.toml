@@ -1,0 +1,10 @@
+[package]
+name = "resource_bundle_loader"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+miniz_oxide = { path = "../vendor/miniz_oxide" }

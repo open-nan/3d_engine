@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rust 3D Engine</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hud" aria-label="Game status">
+        <div>
+          <p class="eyebrow">Rust / WASM Renderer</p>
+          <h1>GPU 3D 渲染引擎</h1>
+        </div>
+        <div class="stats">
+          <div><span>三角形</span><strong id="score">0</strong></div>
+          <div><span>相机高度</span><strong id="health">0</strong></div>
+          <div><span>速度</span><strong id="energy">0</strong></div>
+          <div><span>模型</span><strong id="models">0</strong></div>
+          <div><span>纹理</span><strong id="textures">0</strong></div>
+          <div><span>帧率</span><strong id="fps">0 FPS</strong></div>
+          <div><span>时间</span><strong id="time">0s</strong></div>
+        </div>
+      </section>
+
+      <section class="stage-wrap">
+        <canvas id="stage" width="480" height="270" aria-label="Game canvas"></canvas>
+        <div id="message" class="message hidden">
+          <h2>暂停渲染</h2>
+          <p>拖动画面左右旋转，R 重置相机</p>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Controls">
+        <div class="keymap">
+          <span>WASD / 方向键移动</span>
+          <span>拖动鼠标左右旋转</span>
+          <span>Q / E 升降</span>
+          <span>P 暂停</span>
+          <span>R 重置</span>
+        </div>
+        <button id="pause" type="button">暂停</button>
+        <button id="restart" type="button">重置</button>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
