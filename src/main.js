@@ -1,4 +1,5 @@
 import { DEFAULT_SCENE, renderScene } from "./scenePackage/index.js";
+import { assetUrl } from "./assetUrl.js";
 
 const INPUT = {
   up: 1,
@@ -59,7 +60,7 @@ let loadedTextures = 0;
 window.resourceDebug = { parsed: 0, uploaded: 0, skipped: 0, renderer: "loading" };
 
 async function boot() {
-  const response = await fetch("/wasm/engine.wasm");
+  const response = await fetch(assetUrl("wasm/engine.wasm"));
   const { instance } = await WebAssembly.instantiateStreaming(response, {});
   wasm = instance.exports;
 

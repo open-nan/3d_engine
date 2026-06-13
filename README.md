@@ -25,6 +25,14 @@ npm run build
 
 这会先执行 `npm run build:bundle`，再执行 release profile 的 `npm run build:wasm`，最后执行 `vite build`。
 
+发布 GitHub Pages：
+
+```bash
+npm run deploy:pages
+```
+
+Pages 构建会使用 `/3d_engine/` 作为 Vite base，并把 `dist/` 推送到 `gh-pages` 分支。
+
 ## 架构
 
 - `vite.config.js`: Vite 开发服务和 Rust/WASM 热更新插件。

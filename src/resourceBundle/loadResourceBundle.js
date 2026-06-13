@@ -1,3 +1,5 @@
+import { assetUrl } from "../assetUrl.js";
+
 export function loadResourceBundle(bundle, callbacks = {}) {
   return new Promise((resolve, reject) => {
     const worker = new Worker(new URL("./bundleWorker.js", import.meta.url), { type: "module" });
@@ -25,7 +27,7 @@ export function loadResourceBundle(bundle, callbacks = {}) {
     worker.postMessage({
       type: "load-bundle",
       bundle,
-      wasmUrl: "/wasm/bundle_loader.wasm"
+      wasmUrl: assetUrl("wasm/bundle_loader.wasm")
     });
   });
 }

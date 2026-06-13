@@ -4,8 +4,10 @@ import { resolve } from "node:path";
 import { watch } from "node:fs";
 
 const projectRoot = process.cwd();
+const isGitHubPagesBuild = process.env.GITHUB_PAGES === "1";
 
 export default defineConfig({
+  base: isGitHubPagesBuild ? "/3d_engine/" : "/",
   publicDir: "public",
   assetsInclude: ["**/*.bundle"],
   server: {

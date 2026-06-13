@@ -10,6 +10,8 @@
     "dev": "vite",
     "start": "vite --host 127.0.0.1",
     "build": "npm run build:bundle && npm run build:wasm && vite build",
+    "build:pages": "npm run build:bundle && npm run build:wasm && GITHUB_PAGES=1 vite build",
+    "deploy:pages": "npm run build:pages && node scripts/deploy-pages.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },
   "devDependencies": {
